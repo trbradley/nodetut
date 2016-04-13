@@ -1,6 +1,8 @@
 var chai = require('chai');
 var expect = chai.expect;
 var CartSummary = require('./../../src/part1/cartSummary.js');
+var sinon = require('sinon');
+var tax = require('./../../src/part1/tax.js');
 
 describe('CartSummary', function() {
   it('getSubtotal() should return 0 if no items are passed in', function() {
@@ -27,9 +29,6 @@ describe('CartSummary', function() {
   });
 });
 
-var sinon = require('sinon');
-var tax = require('./../../src/part1/tax.js');
-
 describe('getTax()', function() {
   beforeEach(function() {
     sinon.stub(tax, 'calculate', function(subtotal, state, done) {
@@ -45,7 +44,7 @@ describe('getTax()', function() {
     tax.calculate.restore();
   });
 
-  it('getTax() should execute the callback function with the tax amount', function(done) {
+  it('get Tax() should execute the callback function with the tax amount', function(done) {
     var cartSummary = new CartSummary([{
       id: 1,
       quantity: 4,
