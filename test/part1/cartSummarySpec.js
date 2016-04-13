@@ -61,6 +61,8 @@ describe('getTax()', function() {
 
     cartSummary.getTax('NY', function(taxAmount) {
       expect(taxAmount).to.equal(30);
+      expect(tax.calculate.getCall(0).args[0]).to.equal(300);
+      expect(tax.calculate.getCall(0).args[1]).to.equal('NY');
       done();
     });
   });
